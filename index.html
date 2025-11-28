@@ -5,38 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Layout with Side Margins</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background: #fafafa;
-    }
-    /* メインコンテンツを中央に寄せ、左右に適度な余白を作る */
-    .container {
-      max-width: 650px;    /* ページの横幅を制限 */
-      margin: 0 auto;      /* 自動で左右中央寄せ */
-      padding: 20px 24px;  /* 内側にも少し余白 */
-      background: #ffffff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      border-radius: 8px;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    pre {
-      background: #f0f0f0;
-      padding: 16px;
-      border-radius: 6px;
-      overflow-x: auto;
-    }
-    @media (max-width: 600px) {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #fafafa;
+}
+
+/* メインコンテンツ */
+.container {
+  width: 100%;          /* 常に画面幅いっぱいに広がる */
+  max-width: 650px;     /* PCでは横幅を制限 */
+  margin: 0 auto;       /* 中央寄せ */
+  padding: 20px;        /* 内側余白 */
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  box-sizing: border-box; /* パディング込みで幅を計算 */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+pre {
+  background: #f0f0f0;
+  padding: 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+/* スマホ（幅600px以下）向け調整は必要なしでもOK */
+@media (max-width: 600px) {
   .container {
-    padding: 16px 12px;   /* 左右の余白を狭く */
-    margin: 10px;         /* 上下の余白も少し確保 */
+    padding: 16px; /* 少しパディングを狭くするくらいでOK */
   }
 }
-  </style>
+</style>
 </head>
 <body>
   <div class="container">
