@@ -42,6 +42,22 @@ pre {
   border-radius: 6px;
   overflow-x: auto;
 }
+    
+@media (max-width: 600px) {
+
+  /* 見出しをスマホ画面に合わせて少し小さく */
+  h1 {
+    font-size: 20px;      /* PCより小さめ */
+    margin-bottom: 16px;  /* 余白も少し減らす */
+  }
+
+  /* <pre> 内のテキストもスマホ向けに縮小 */
+  pre {
+    font-size: 12px;      /* スマホで読みやすいサイズ */
+    padding: 12px;        /* 内側余白を少し狭く */
+  }
+
+}
 
 
 </style>
