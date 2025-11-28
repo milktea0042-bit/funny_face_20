@@ -1,0 +1,65 @@
+(function($) {
+
+  $('.wp-make-quiz-question li').click(function(){
+
+    var question = $(this).parents('.wp-make-quiz-wrapper');
+
+    if(question.hasClass('open')){
+      return false;
+    }
+
+    question.addClass('open');
+    question.find('.wp-make-quiz-question li').addClass('disabled');
+
+    $(this).addClass('choice');
+    $(this).find('img').fadeIn();
+
+    if($(this).hasClass('correct')){
+      //正解
+      question.find('.wp-make-quiz-answer').addClass('correct');
+      question.find('.wp-make-quiz-result.correct').show();
+    }else{
+      //不正解
+      question.find('.wp-make-quiz-answer').addClass('incorrect');
+      question.find('.wp-make-quiz-result.incorrect').show();
+    }
+
+    question.find('.wp-make-quiz-answer').fadeIn();
+    resultQuiz( this );
+
+  });
+
+  function resultQuiz( obj ){
+
+    if( $(".wp-make-quiz-wrapper").size() == $(".wp-make-quiz-wrapper.open").size() ){
+      var questions = $( obj ).parents('.article-body');
+      
+      questions.find(".quiz-total").text( $(".wp-make-quiz-wrapper").size() );
+      questions.find(".quiz-correct-num").text( $(".wp-make-quiz-answer.correct").size() );
+      questions.find(".wp-make-quiz-all-result").fadeIn();
+    }
+
+  }
+
+  $(".quiz-tweet-link").on("click",function(e){
+    var questionResult = $(this).parents(".wp-make-quiz-all-result");
+
+    var questionResultHashTag = questionResult.attr("hashtag");
+    var questionResultTotal = questionResult.find(".quiz-total").text();
+    var questionResultCorrect = questionResult.find(".quiz-correct-num").text();
+    var questionResultTitle = $(this).parents(".article").data("title");
+    var questionResultUrl = "https://omocoro.jp"+$(this).parents(".article").data("parent-url");
+    var questionResultTweetText = questionResultTotal+"問中"+questionResultCorrect+"問正解でした！"+questionResultTitle;
+
+    var questionPageUrl = "https://twitter.com/intent/tweet?text="+encodeURI(questionResultTweetText)+"&url="+encodeURI(questionResultUrl);
+    if( questionResultHashTag ){
+      questionPageUrl += "&hashtags="+encodeURI(questionResultHashTag);
+    }
+
+    window.open(questionPageUrl, null, "noopener");
+
+    e.preventDefault();
+  });
+
+
+})(jQuery);
