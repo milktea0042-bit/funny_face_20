@@ -36,6 +36,14 @@ pre {
   overflow-x: auto;
 }
 
+    /* 画像のサイズをPCでは最大650px、スマホでは画面幅いっぱいに調整 */
+    .container img {
+      width: 100%;       /* 親に合わせて縮小 */
+      max-width: 650px;  /* PCでは650pxまでに制限 */
+      height: auto;      /* アスペクト比を維持 */
+      display: block;
+    }
+
 /* スマホ（幅600px以下）向け調整は必要なしでもOK */
 @media (max-width: 600px) {
   .container {
